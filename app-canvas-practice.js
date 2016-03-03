@@ -13,55 +13,48 @@ http://html5.litten.com/moving-shapes-on-the-html5-canvas-with-the-keyboard/
 /////global variables/////
 var canvas;
 var ctx;
-var dx = 5;             //horizontal speed
-var dy = 5;             //vertical speed
-var circRadius  = 10;   //radius of circle
-var p1positionX = 10;   //p1 horizontal position
-var p1positionY = 305;  //p1 vertical position
-var p2positionX = 590;  //p2 horizontal position
-var p2positionY = 275;  //p2 vertical position
-var WIDTH = 600;
-var HEIGHT = 600;
+var dx = 10;            //horizontal speed
+    dy = 10;            //vertical speed
+    circRadius  = 10;   //radius of circle
+    p1positionX = 10;   //p1 horizontal position
+    p1positionY = 305;  //p1 vertical position
+    p2positionX = 590;  //p2 horizontal position
+    p2positionY = 275;  //p2 vertical position
+    mazeImg     = new Image();
+    WIDTH       = 600;
+    HEIGHT      = 600;
 /////////////////////////
 
 function player1(p1positionX, p1positionY, r) {  //creates player1 marker
-ctx.beginPath();
-ctx.arc(p1positionX, p1positionY, r, 0, Math.PI*2, true);
-ctx.fill();
+  ctx.beginPath();
+  ctx.arc(p1positionX, p1positionY, r, 0, Math.PI*2, true);
+  ctx.fill();
 }
 
 function player2(p2positionX, p2positionY, r) {  //creates player2 marker
-ctx.beginPath();
-ctx.arc(p2positionX, p2positionY, r, 0, Math.PI*2, true);
-ctx.fill();
+  ctx.beginPath();
+  ctx.arc(p2positionX, p2positionY, r, 0, Math.PI*2, true);
+  ctx.fill();
 }
 
-
-function rect(x, y, w, h) {  //maze canvas for p1
-ctx.beginPath();
-ctx.rect(x, y, w, h);
-ctx.closePath();
-ctx.fill();
-ctx.stroke();
+function rect(x, y, w, h) {  //maze canvas rectangle
+  ctx.beginPath();
+  ctx.rect(x, y, w, h);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
 }
 
-
-// function rect(p2positionX,p2positionY, w, h) {  //maze canvas for p2
-// ctx.beginPath();
-// ctx.rect(p2positionX, p2positionY, w, h);
-// ctx.closePath();
-// ctx.fill();
-// ctx.stroke();
-// }
-
-function clear() { //allows to clear canvas (for movement)
-ctx.clearRect(0, 0, WIDTH, HEIGHT);
+function clear() {  //allows to clear canvas (for movement)
+  ctx.clearRect(0, 0, WIDTH, HEIGHT);
+  ctx.drawImage(mazeImg, 0, 0);
 }
 
-function init() { //reference to canvas to allow draw
-canvas = document.getElementById('canvas');
-ctx = canvas.getContext('2d');
-return setInterval(draw, 10);
+function init() {   //reference to canvas to allow draw
+  canvas      = document.querySelector('#canvas');
+  ctx         = canvas.getContext('2d');
+  mazeImg.src = 'img/maze.gif';
+  return setInterval(draw, 10);
 }
 
 
@@ -121,16 +114,20 @@ function moveP2(p2){
 //magggiccc???
 function draw() {
   clear();
-  ctx.fillStyle = 'white';
-  ctx.strokeStyle = 'black';
-  rect(0,0,WIDTH,HEIGHT);                 //rect is maze rectangle container
-  ctx.fillStyle = 'MediumVioletRed';      //player 1 marker color
+  ctx.fillStyle   = 'rgba(0, 0, 0, 0)';           //canvas bg set to transparent
+  ctx.strokeStyle = 'black';                      //canvas outline color
+  rect(0,0,WIDTH,HEIGHT);                         //rect is maze rectangle container
+  ctx.fillStyle   = 'MediumVioletRed';            //player 1 marker color
   player1(p1positionX, p1positionY, circRadius);  //player 1 marker position
-  ctx.fillStyle = 'YellowGreen';          //player 2 marker color
+  ctx.fillStyle   = 'YellowGreen';                //player 2 marker color
   player2(p2positionX, p2positionY, circRadius);  //player 2 marker position
 }
 
 init();
 
-window.addEventListener('keydown',moveP1,true); //listens for p1 keydown
-window.addEventListener('keydown',moveP2,true); //listens for p2 keydown
+window.addEventListener('keydown', moveP1, true); //listens for p1 keydown
+window.addEventListener('keydown', moveP2, true); //listens for p2 keydown
+/* currently, only 1 player at a time can hold down the key
+for continuous movement. Unless both players are constantly
+keying down, the game is technically broken
+----solution could be a while loop??? */
