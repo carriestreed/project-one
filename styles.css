@@ -33,13 +33,19 @@ h1 {
   position: relative;
 }
 
+.player1-container {
+  position: absolute;
+  left: 0px;
+  top: 305px;
+}
+
 #player1 {
   width: 20px;
   height: 20px;
   background-color: MediumVioletRed;
   position: absolute;
-  left: 0px;
-  top: 305px;
+  /*left: 0px;
+  top: 305px;*/
   border-radius: 50%;
 }
 

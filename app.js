@@ -27,12 +27,24 @@ D = 68,
 W = 87,
 S = 83
 */
-document.onkeydown = animatePlayer1;
+document.onkeydown = movePlayer1;
 
-function animatePlayer1(marker){
+function movePlayer1(marker){
     if (marker.keyCode === 68){ //moves marker Right
-      player1start +=2;
+      player1start +=5;
       player1.style.left = player1start + 'px';
+    }
+    if (marker.keyCode === 65){ //moves marker Left
+      player1start -=5;
+      player1.style.left = player1start + 'px';
+    }
+    if (marker.keyCode === 87) { //moves marker Up
+      player1start +=5;
+      player1.style.bottom = player1start + 'px';
+    }
+    if (marker.keyCode === 83) { //moves marker Down
+      player1start -=5;
+      player1.style.bottom = player1start + 'px';
     }
 }
 
