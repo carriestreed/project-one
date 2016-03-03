@@ -1,0 +1,34 @@
+/*
+maze image generated at http://www.mazegenerator.net/
+*/
+
+* {
+  font-family: sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-family: 'Arvo', serif;
+  font-size: 40px;
+  color: black;
+  line-height: 20px;
+  text-align: center;
+}
+
+.maze-container {
+  width: 95%;
+  margin: auto;
+}
+
+.maze-game {
+  background: url('img/maze.gif');
+  background-size: contain;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+
+}
