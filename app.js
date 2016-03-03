@@ -1,13 +1,57 @@
 console.log('loaded');
 
+///////////// ATTEMPTING USE OF CANVAS API /////////////////
+/*
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+*/
+
 //global variables
-var mazeGame      = document.querySelector('.maze-game');
+var canvas        = document.querySelector('#maze');
+    ctx           = canvas.getContext('2d');
+    mazeGame      = document.querySelector('.maze-game');
     player1       = document.querySelector('#player1');
     player2       = document.querySelector('#player2');
     player1start  = 0;
     player2start  = 0;
 
-//////// TWO PLAYER GAME
+//initialize game
+function init(){
+
+}
+
+//create player1
+// function player1(){
+//   if (canvas.getContext){
+//     mazeContext.fillStyle = 'deepPink';
+//     mazeContext.fillRect (10,10,50,50);
+//   }
+// }
+
+
+ctx.fillStyle = 'deepPink';
+ctx.beginPath();
+ctx.arc(10, 315, 10, 0, Math.PI*2, true);
+ctx.closePath();
+ctx.fill();
+
+ctx.fillStyle = 'yellowGreen';
+ctx.beginPath();
+ctx.arc(590, 285, 10, 0, Math.PI*2, true);
+ctx.closePath();
+ctx.fill();
+
+
+
+
+
+
+
+
+
+
+
+
+////////////// PREVIOUS CODE (before canvas) ////////////////////
 
 //////// WELCOME WINDOW BOX
 /// GIVE SHORT GAME INSTRUCTIONS
@@ -31,6 +75,7 @@ document.onkeydown = movePlayer1;
 
 function movePlayer1(marker){
     if (marker.keyCode === 68){ //moves marker Right
+      checkCanMove();
       player1start +=5;
       player1.style.left = player1start + 'px';
     }
@@ -48,6 +93,8 @@ function movePlayer1(marker){
     }
 }
 
+// todo: set player initit position in javascript, not css
+
 
 
 
@@ -63,6 +110,7 @@ ARROW LEFT  = 37,
 
 /////// SET WALL BOUNDARIES
 /// MARKERS CAN NOT PASS THROUGH BLACK WALLS
+
 
 /////// SET WIN
 /// FIRST PLAYER TO REACH OPPOSITE END WINS

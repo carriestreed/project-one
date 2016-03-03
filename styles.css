@@ -54,7 +54,7 @@ h1 {
   height: 20px;
   background-color: YellowGreen;
   position: absolute;
-  left: 580px;
-  top: 275px;
+  /*left: 580px;
+  top: 275px;*/
   border-radius: 50%;
 }
