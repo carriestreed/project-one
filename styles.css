@@ -30,5 +30,25 @@ h1 {
   width: 600px;
   height: 600px;
   margin: auto;
+  position: relative;
+}
 
+#player1 {
+  width: 20px;
+  height: 20px;
+  background-color: MediumVioletRed;
+  position: absolute;
+  left: 0px;
+  top: 305px;
+  border-radius: 50%;
+}
+
+#player2 {
+  width: 20px;
+  height: 20px;
+  background-color: YellowGreen;
+  position: absolute;
+  left: 580px;
+  top: 275px;
+  border-radius: 50%;
 }
