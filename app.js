@@ -1,4 +1,4 @@
-console.log('loaded');
+console.log('app.js loaded');
 
 ///////////// ATTEMPTING USE OF CANVAS API /////////////////
 /*
@@ -6,41 +6,82 @@ https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 */
 
 //global variables
-var canvas        = document.querySelector('#maze');
+var canvas        = document.querySelector('#canvas');
     ctx           = canvas.getContext('2d');
-    mazeGame      = document.querySelector('.maze-game');
-    player1       = document.querySelector('#player1');
-    player2       = document.querySelector('#player2');
-    player1start  = 0;
-    player2start  = 0;
+    p1positionX   = 10;
+    p1positionY   = 315;
+    p2positionX   = 590;
+    p2positionY   = 285;
+
 
 //initialize game
 function init(){
 
 }
 
+//create player2  (does not appear if function is positioned down????)
+var player2 = function(){
+  console.log('creating player2');
+  ctx.fillStyle = 'yellowGreen';
+  ctx.beginPath();
+  ctx.arc(p2positionX, p2positionY, 10, 0, Math.PI*2, true);
+  ctx.closePath();
+  ctx.fill();
+}
+player2();
+
 //create player1
-// function player1(){
-//   if (canvas.getContext){
-//     mazeContext.fillStyle = 'deepPink';
-//     mazeContext.fillRect (10,10,50,50);
-//   }
+function player1(){
+  console.log('creating player1');
+  ctx.fillStyle = 'deepPink';
+  ctx.beginPath();
+  ctx.arc(p1positionX, p1positionY, 10, 0, Math.PI*2, true);
+  ctx.closePath();
+  ctx.fill();
+}
+player1();
+
+
+
+/// PLAYER 1: D (RIGHT) A (LEFT) W (UP) S (DOWN)
+/* from Ascii table: http://www.ascii-code.com/
+D = 68, (right)
+A = 65, (left)
+W = 87, (up)
+S = 83  (down)
+*/
+
+window.addEventListener('keydown', movePlayer1, true);
+
+function movePlayer1(p1){
+  if (p1.keyCode === 68){
+    console.log('moving p1 right');
+    clearCanvas;
+    p1positionX +=5;
+  }
+  if (p1.keyCode === 65){
+    console.log('moving p1 left');
+  }
+  if (p1.keyCode === 87){
+    console.log('moving p1 up');
+  }
+  if (p1.keyCode === 83){
+    console.log('moving p1 down');
+  }
+}
+
+function clearCanvas() {
+
+canvas.width = canvas.width;
+
+}
+
+
+
+//check for boundaries
+// function checkCanMove(){
+//   console.log('checking if player can move');
 // }
-
-
-ctx.fillStyle = 'deepPink';
-ctx.beginPath();
-ctx.arc(10, 315, 10, 0, Math.PI*2, true);
-ctx.closePath();
-ctx.fill();
-
-ctx.fillStyle = 'yellowGreen';
-ctx.beginPath();
-ctx.arc(590, 285, 10, 0, Math.PI*2, true);
-ctx.closePath();
-ctx.fill();
-
-
 
 
 
@@ -64,13 +105,9 @@ ctx.fill();
 //////// SET GAME MARKERS' FUNCTIONALITY
 /// KEYSTROKES DETERMINE MOVEMENT OF MARKERS
 
-/// PLAYER 1: A (LEFT) D (RIGHT) W (UP) S (DOWN)
-/* from Ascii table: http://www.ascii-code.com/
-A = 65,
-D = 68,
-W = 87,
-S = 83
-*/
+
+
+/*
 document.onkeydown = movePlayer1;
 
 function movePlayer1(marker){
