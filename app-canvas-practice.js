@@ -17,9 +17,9 @@ var dx = 10;            //horizontal speed
     dy = 10;            //vertical speed
     circRadius  = 10;   //radius of circle
     p1positionX = 10;   //p1 horizontal position
-    p1positionY = 305;  //p1 vertical position
+    p1positionY = 315;  //p1 vertical position
     p2positionX = 590;  //p2 horizontal position
-    p2positionY = 275;  //p2 vertical position
+    p2positionY = 285;  //p2 vertical position
     mazeImg     = new Image();
     WIDTH       = 600;
     HEIGHT      = 600;
@@ -115,7 +115,7 @@ function moveP2(p2){
 function draw() {
   clear();
   ctx.fillStyle   = 'rgba(0, 0, 0, 0)';           //canvas bg set to transparent
-  ctx.strokeStyle = 'black';                      //canvas outline color
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0)';           //canvas outline set to transparent
   rect(0,0,WIDTH,HEIGHT);                         //rect is maze rectangle container
   ctx.fillStyle   = 'MediumVioletRed';            //player 1 marker color
   player1(p1positionX, p1positionY, circRadius);  //player 1 marker position
@@ -131,3 +131,7 @@ window.addEventListener('keydown', moveP2, true); //listens for p2 keydown
 for continuous movement. Unless both players are constantly
 keying down, the game is technically broken
 ----solution could be a while loop??? */
+
+/* TO DO:
+Resize canvas maze image instead of just resizing the image diretly
+*/
