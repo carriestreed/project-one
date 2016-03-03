@@ -39,12 +39,12 @@ function movePlayer1(marker){
       player1.style.left = player1start + 'px';
     }
     if (marker.keyCode === 87) { //moves marker Up
-      player1start +=5;
-      player1.style.bottom = player1start + 'px';
+      player1start -=5;
+      player1.style.top = player1start + 'px';
     }
     if (marker.keyCode === 83) { //moves marker Down
-      player1start -=5;
-      player1.style.bottom = player1start + 'px';
+      player1start +=5;
+      player1.style.top = player1start + 'px';
     }
 }
 
