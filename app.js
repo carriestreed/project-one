@@ -10,11 +10,8 @@ var clickToPlay;
 /////////////////////////
 
 
-clickToPlay = document.querySelector('.submitButton');
-  clickToPlay.addEventListener('click', function(){
-    alert('clicked to play');
-    // playMaze(); //does not play maze, instead refreshes the page
-  });
+clickToPlay = document.querySelector('#playButton');
+  clickToPlay.addEventListener('click', playMaze);
 
 
 function playMaze(){

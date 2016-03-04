@@ -79,7 +79,7 @@ input[name=player2] {
   background-color: YellowGreen;
 }
 
-input[type=submit] {
+input[type=button] {
   font-size: 20px;
   border: 1px solid #999;
   width: 100%;
