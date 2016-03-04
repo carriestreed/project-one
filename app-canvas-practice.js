@@ -84,10 +84,11 @@ function checkForWallP2(){   //checks for clear path for Player 1
   }
 }
 
-function checkForWinP1(){
-  console.log('checking for win - p1');
-  if (p1positionX === 580 && p1positionY === 277){ //p1 exit coordinates
-    p1wins = true;
+function checkForWin(){
+  console.log('checking for win');
+  if (p1positionX === 580 && p1positionY === 277 ||
+      p2positionX === 3 && p2positionY === 307){ //p1 exit coordinates
+    playerWins = true;
   }
 }
 
@@ -110,8 +111,8 @@ function moveP1(p1){
         p1positionX -= distanceX;
         wallBlocking = false;
       }
-      checkForWinP1();
-      if (p1wins){
+      checkForWin();
+      if (playerWins){
         alert('Player 1 Wins!');
       }
     }
@@ -121,7 +122,6 @@ function moveP1(p1){
       console.log('moving p1 left');
       p1positionX -= distanceY;
       clear();
-      checkForWinP1();
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
@@ -135,7 +135,6 @@ function moveP1(p1){
       console.log('moving p1 up');
       p1positionY -= distanceY;
       clear();
-      checkForWinP1();
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
@@ -149,7 +148,6 @@ function moveP1(p1){
       console.log('moving p1 down');
       p1positionY += distanceY;
       clear();
-      checkForWinP1();
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
@@ -193,6 +191,10 @@ function moveP2(p2){
         console.log('wall block');
         p2positionX += distanceX;
         wallBlocking = false;
+      }
+      checkForWin();
+      if (playerWins){
+        alert('Player 2 Wins!');
       }
     }
   }
