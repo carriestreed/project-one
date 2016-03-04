@@ -35,17 +35,6 @@ h1 {
   position: relative;
 }
 
-.welcome {
-  width: 600px;
-  height: 600px;
-  background-color: rgba(255,255,255,0.95);
-  border: 5px solid black;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  padding: 0 30px;
-}
-
 h2 {
   font-size: 70px;
   text-align: center;
@@ -53,8 +42,15 @@ h2 {
   margin-top: 40px;
 }
 
-p {
+h3 {
+  font-size: 50px;
+  text-align:center;
+  margin-top: 100px;
+  color: LightSeaGreen;
+}
 
+.winner > p {
+  font-size: 40px;
 }
 
 form {
@@ -87,20 +83,46 @@ input[type=button] {
   height: 100px
 }
 
+.welcome {
+  width: 600px;
+  height: 600px;
+  background-color: rgba(255,255,255,0.95);
+  border: 5px solid black;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 0 30px;
+}
+
+/*.winner {
+  width: 600px;
+  height: 600px;
+  background-color: rgba(255,255,255,0.95);
+  border: 5px solid black;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 0 30px;
+}*/
+
 
 /*
 Styling for Input Placeholder Text
 https://css-tricks.com/snippets/css/style-placeholder-text/
 */
 ::-webkit-input-placeholder {
-   color: white;
+   font-style: italic;
+   color: rgba(255,255,255,0.8);
 }
 :-moz-placeholder { /* Firefox 18- */
-   color: white;
+   font-style: italic;
+   color: rgba(255,255,255,0.8);
 }
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: white;
+   font-style: italic;
+   color: rgba(255,255,255,0.8);
 }
 :-ms-input-placeholder {
-   color: white;
+   font-style: italic;
+   color: rgba(255,255,255,0.8);
 }
