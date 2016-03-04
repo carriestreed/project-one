@@ -13,7 +13,6 @@ var clickToPlay;
 clickToPlay = document.querySelector('#playButton');
   clickToPlay.addEventListener('click', playMaze);
 
-
 function playMaze(){
   console.log('ready. set. go!')
 
