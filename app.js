@@ -6,7 +6,15 @@ console.log('app.js loaded');
 var mazeGame;
 var welcomeBox;
 var title;
+var clickToPlay;
 /////////////////////////
+
+
+clickToPlay = document.querySelector('.submitButton');
+  clickToPlay.addEventListener('click', function(){
+    alert('clicked to play');
+    // playMaze(); //does not play maze, instead refreshes the page
+  });
 
 
 function playMaze(){

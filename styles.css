@@ -16,7 +16,6 @@ body {
 h1 {
   font-size: 40px;
   color: white;
-  line-height: 20px;
   text-align: center;
 }
 
@@ -48,6 +47,8 @@ h1 {
 h2 {
   font-size: 70px;
   text-align: center;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 p {
@@ -81,4 +82,21 @@ input[type=submit] {
   border: 1px solid #999;
   width: 100%;
   height: 100px
+}
+
+/*
+Styling for Input Placeholder Text
+https://css-tricks.com/snippets/css/style-placeholder-text/
+*/
+::-webkit-input-placeholder {
+   color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: white;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: white;
+}
+:-ms-input-placeholder {
+   color: white;
 }
