@@ -9,6 +9,25 @@ http://www.html5canvastutorials.com/
 http://html5.litten.com/make-a-maze-game-on-an-html5-canvas/
 
 */
+//
+// var players = [
+//   {
+//     positionX: 10,
+//     positionY: 100
+//     up: 86,
+//     left: 87,
+//     down: 88,
+//     right: 89
+//   },
+//   {
+//     positionX: 0,
+//     positionY: 10000,
+//     up:
+//     down:
+//     left:
+//     right:
+//   }
+// ]
 
 
 /////global variables/////
@@ -29,9 +48,9 @@ var distanceX = 10;              //horizontal distance by pixel
 
 function startGame(){                               //starts the game, sets everything in place
   canvas      = document.querySelector('#canvas');  //selects canvas
-  context     = canvas.getContext('2d');            //canvas api
+  context     = canvas.getContext('2d');            //canvas api to select Context (which is 2D)
   mazeImg.src = 'img/maze.gif';                     //sets maze image to canvas
-  return setInterval(draw, 1);                      //rate of draw refresh (relates to speed which markers are moved)
+  return setInterval(draw, 1);                      //rate of draw refresh (relates to speed which markers are moved). Points to draw()
 }
 
 function player1(pX,pY,mW,mH){                      //creates player1 marker -- pulls from draw()
@@ -59,8 +78,7 @@ function clear(){                                   //resets canvas for animatio
   context.drawImage(mazeImg, 0, 0);                 //draws canvas image
 }
 
-
-/////checks for boundaries
+/////checks for boundaries TODO write one function and pass in a parameter
 function checkForWallP1(){
   //getImageData() returns marker's current position on the canvas using its pixel data
   var mazeImageData   = context.getImageData(p1positionX, p1positionY, markerWidth, markerHeight);
@@ -81,7 +99,7 @@ function checkForWallP2(){
   var imgDataArr      = mazeImageData.data;
   for (var i = 0; i < imgDataArr.length; i++){
     if (imgDataArr[i] === 0){
-      wallBlocking = true;
+      wallBlocking    = true;
     }
   }
 }
@@ -242,11 +260,12 @@ function moveP2(p2){
 
 document.addEventListener('keydown', moveP1);                 //listens for player 1 keydown
 document.addEventListener('keydown', moveP2);                 //listens for player 2 keydown
-/* currently, only 1 player at a time can hold down the key
-for continuous movement. Unless both players are constantly
-keying down, the game is technically broken
-----solution could be a while loop??? */
+
 
 /* TODO
 Resize canvas maze image instead of just resizing the image diretly
+
+currently, only 1 player at a time can hold down the key for continuous
+movement. Unless both players are constantly keying down, the game is
+technically broken----solution could be a while loop???
 */

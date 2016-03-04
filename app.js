@@ -51,10 +51,17 @@ function playMaze(){
 
 function winAlert(){
   console.log('in the WinAlert function')
-  if (p1win = true){
+  if (p1win){
     console.log(p1name + ' is the winner');
+
+    var winBox = document.querySelector
+
+
   }
-  if (p2win = true){
+  if (p2win){
     console.log(p2name + ' is the winner');
+
+
+
   }
 }
