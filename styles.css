@@ -66,7 +66,7 @@ input[type=text] {
   padding: 20px;
   font-size: 20px;
   color: white;
-  border: 1px solid #999;
+  border: 1px solid darkGrey;
   width: 100%;
   height: 100px
 }
@@ -81,10 +81,12 @@ input[name=player2] {
 
 input[type=button] {
   font-size: 20px;
+  font-weight: bolder;
   border: 1px solid #999;
   width: 100%;
   height: 100px
 }
+
 
 /*
 Styling for Input Placeholder Text

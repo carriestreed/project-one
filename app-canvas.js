@@ -19,7 +19,7 @@ var distanceX = 10;              //horizontal distance by pixel
     p1positionX  = 0;            //p1 horizontal position
     p1positionY  = 307;          //p1 vertical position
     p2positionX  = 583;          //p2 horizontal position
-    p2positionY  = 277;          //p2 vertical position
+    p2positionY  = 276;          //p2 vertical position
     mazeImg      = new Image();  //reads from canvas API - creates new image function for maze.gif
     markerWidth  = 17;           //sets width of player markers
     markerHeight = 17;           //sets height of player markers
@@ -90,9 +90,17 @@ function checkForWallP2(){
 
 function checkForWin(){                             //checks for winner, 1st to exit wins!
   console.log('checking for win');
-  if (p1positionX === 580 && p1positionY === 277 || //p1 exit coordinates
-      p2positionX === 3 && p2positionY === 307){    //p2 exit coordinates
-    playerWins = true;                              //switches to a win state
+  if (p1positionX === 580 && p1positionY === 277){  //p1 exit coordinates
+    console.log(p1name + 'wins!');
+    p1win = true;
+    winAlert();
+    return;
+  }
+  if (p2positionX === 3 && p2positionY === 306){    //p2 exit coordinates
+    console.log(p2name + 'wins!');
+    p2win = true;
+    winAlert();
+    return;
   }
 }
 
@@ -116,9 +124,6 @@ function moveP1(p1){
         wallBlocking = false;                      //marker position no longer blocked, yay
       }
       checkForWin();                               //CHECKING FOR WIN
-      if (playerWins){                             //only needed on the KEY D (right) since that is the keystroke made to find winning position
-        alert('Player 1 Wins!');                   //TODO
-      }
     }
   }
   if (p1.keyCode === 65){
@@ -132,6 +137,7 @@ function moveP1(p1){
         p1positionX += distanceX;
         wallBlocking = false;
       }
+      checkForWin();
     }
   }
   if (p1.keyCode === 87){
@@ -145,6 +151,7 @@ function moveP1(p1){
         p1positionY += distanceY;
         wallBlocking = false;
       }
+      checkForWin();
     }
   }
   if (p1.keyCode === 83){
@@ -158,6 +165,7 @@ function moveP1(p1){
         p1positionY -= distanceY;
         wallBlocking = false;
       }
+      checkForWin();
     }
   }
   console.log(context.getImageData(p1positionX, p1positionY, markerWidth, markerHeight).data);
@@ -182,6 +190,7 @@ function moveP2(p2){
         p2positionX -= distanceX;                //move marker back (left)
         wallBlocking = false;                    //marker position no longer blocked, proceeeeeeed
       }
+      checkForWin();                             //CHECKING FOR WIN
     }
   }
   if (p2.keyCode === 37){                        //ARROW LEFT
@@ -195,36 +204,35 @@ function moveP2(p2){
         p2positionX += distanceX;                //move marker back (right)
         wallBlocking = false;                    //marker position no longer blocked, proceed!!!!!
       }
-      checkForWin();                             //CHECKING FOR WIN
-      if (playerWins){                           //only needed on the arrow Left key since that is the keystroke made to find winning position
-        alert('Player 2 Wins!');                 //TODO
-      }
+      checkForWin();
     }
   }
   if (p2.keyCode === 38){
     if (p2positionY + distanceY > 0){
       console.log('moving p2 up');
+      clear();
       p2positionY -= distanceY;
       checkForWallP2();
-      clear();
       if (wallBlocking){
         console.log('wall block');
         p2positionY += distanceY;
         wallBlocking = false;
       }
+      checkForWin();
     }
   }
   if (p2.keyCode === 40){
     if (p2positionY + distanceY < MAZEHEIGHT){
       console.log('moving p2 down');
+      clear();
       p2positionY += distanceY;
       checkForWallP2();
-      clear();
       if (wallBlocking){
         console.log('wall block');
         p2positionY -= distanceY;
         wallBlocking = false;
       }
+      checkForWin();
     }
   }
   console.log(context.getImageData(p2positionX, p2positionY, markerWidth, markerHeight).data);
@@ -232,8 +240,8 @@ function moveP2(p2){
 
 // startGame();
 
-window.addEventListener('keydown', moveP1, true);                 //listens for player 1 keydown
-window.addEventListener('keydown', moveP2, true);                 //listens for player 2 keydown
+document.addEventListener('keydown', moveP1);                 //listens for player 1 keydown
+document.addEventListener('keydown', moveP2);                 //listens for player 2 keydown
 /* currently, only 1 player at a time can hold down the key
 for continuous movement. Unless both players are constantly
 keying down, the game is technically broken
