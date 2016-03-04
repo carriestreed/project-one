@@ -13,73 +13,81 @@ http://html5.litten.com/moving-shapes-on-the-html5-canvas-with-the-keyboard/
 /////global variables/////
 var canvas;
 var context;
-var dx = 10;                    //horizontal speed
-    dy = 10;                    //vertical speed
-    p1positionX = 0;           //p1 horizontal position
-    p1positionY = 308;          //p1 vertical position
-    p2positionX = 585;          //p2 horizontal position
-    p2positionY = 277;          //p2 vertical position
-    mazeImg     = new Image();  //TODO canvas new image function for maze.gif *read up on canvas image api
-    WIDTH       = 600;          //fixed canvas size
-    HEIGHT      = 600;          //fixed canvas size
+var distanceX = 10;              //horizontal distance by pixel
+    distanceY = 10;              //vertical distance by pixel
+    p1positionX  = 0;            //p1 horizontal position
+    p1positionY  = 307;          //p1 vertical position
+    p2positionX  = 583;          //p2 horizontal position
+    p2positionY  = 277;          //p2 vertical position
+    mazeImg      = new Image();  //TODO canvas new image function for maze.gif *read up on canvas image api
+    markerWidth  = 17;           //sets width of player markers
+    markerHeight = 17;           //sets height of player markers
+    MAZEWIDTH    = 600;          //fixed canvas size for maze
+    MAZEHEIGHT   = 600;          //fixed canvas size for maze
 /////////////////////////
 
 
 
-function player1(x,y,w,h) {  //creates player1 marker
-  context.beginPath(); //canvas api function
-  context.rect(p1positionX, p1positionY, w, h); //canvas api function for Circle shape
-  context.closePath();
-  context.fill(); //points to contextt.fillStyle
+function player1(x,y,w,h){                 //creates player1 marker
+  context.beginPath();                     //TODO
+  context.rect(p1positionX, p1positionY, markerWidth, markerHeight); //canvas api function for Rectangle shape
+  context.closePath();                     //TODO
+  context.fill();                          //points to context.fillStyle in draw()
 }
 
-function player2(x,y,w,h) {  //creates player2 marker
-  context.beginPath(); //canvas api function
-  context.rect(p2positionX, p2positionY, w, h); //canvas api function for Circle shape
-  context.closePath();
-  context.fill(); //points to contextt.fillStyle
+function player2(x,y,w,h){                 //creates player2 marker
+  context.beginPath();                     //TODO
+  context.rect(p2positionX, p2positionY, markerWidth, markerHeight); //canvas api function for Rectangle shape
+  context.closePath();                     //TODO
+  context.fill();                          //points to context.fillStyle in draw()
 }
 
-//magggiccc???
-function draw() {
-clear();
-context.fillStyle = "MediumVioletRed";
-player1(p1positionX, p1positionY, 15,15);
-
-context.fillStyle = "YellowGreen";
-player2(p2positionX, p2positionY, 15,15);
+//magggiccc
+function draw(){
+  clear();                                  //sets/resets canvas for animation
+  context.fillStyle = "MediumVioletRed";    //player 1 marker color
+  player1(p1positionX, p1positionY, markerWidth, markerHeight);
+  context.fillStyle = "YellowGreen";        //player 2 marker color
+  player2(p2positionX, p2positionY, markerWidth, markerHeight);
 }
 
-function clear() {  //sets up canvas for movement
-  context.clearRect(0, 0, WIDTH, HEIGHT);    //clears canvas area (rectangle)
-  context.drawImage(mazeImg, 0, 0);          //draws canvas image
+function clear(){                                   //resets canvas for animation/draw
+  context.clearRect(0, 0, MAZEWIDTH, MAZEHEIGHT);   //resets marker position
+  context.drawImage(mazeImg, 0, 0);                 //draws canvas image
 }
 
-function init() {   //starts the game, sets everything in place
-  canvas      = document.querySelector('#canvas'); //selects canvas
-  context     = canvas.getContext('2d'); //canvas api
-  mazeImg.src = 'img/maze.gif';   //sets maze image to canvas
-  return setInterval(draw, 1);    //rate of draw refresh (relates to speed which markers are moved)
+function startGame(){                               //starts the game, sets everything in place
+  canvas      = document.querySelector('#canvas');  //selects canvas
+  context     = canvas.getContext('2d');            //canvas api
+  mazeImg.src = 'img/maze.gif';                     //sets maze image to canvas
+  return setInterval(draw, 1);                      //rate of draw refresh (relates to speed which markers are moved)
 }
 
 
-function checkForWallP1() {  //checks for clear path for Player 1
-  var mazeImageData = context.getImageData(p1positionX, p1positionY, 15, 15);
-  var imgDataArr = mazeImageData.data;
-  for (var i = 0; n = imgDataArr.length, i < n; i += 4) {
+function checkForWallP1(){   //checks for clear path for Player 1
+  var mazeImageData   = context.getImageData(p1positionX, p1positionY, markerWidth, markerHeight);
+  var imgDataArr      = mazeImageData.data;
+  for (var i = 0; i < imgDataArr.length; i++){
     if (imgDataArr[i] === 0) {
+      wallBlocking    = true;
+    }
+  }
+}
+
+function checkForWallP2(){   //checks for clear path for Player 1
+  var mazeImageData   = context.getImageData(p2positionX, p2positionY, markerWidth, markerHeight);
+  var imgDataArr      = mazeImageData.data;
+  for (var i = 0; n   = imgDataArr.length, i < n; i += 4){
+    if (imgDataArr[i] === 0){
       wallBlocking = true;
     }
   }
 }
 
-function checkForWallP2() {  //checks for clear path for Player 1
-  var mazeImageData = context.getImageData(p2positionX, p2positionY, 15, 15);
-  var imgDataArr = mazeImageData.data;
-  for (var i = 0; n = imgDataArr.length, i < n; i += 4) {
-    if (imgDataArr[i] === 0) {
-      wallBlocking = true;
-    }
+function checkForWinP1(){
+  console.log('checking for win - p1');
+  if (p1positionX === 580 && p1positionY === 277){ //p1 exit coordinates
+    p1wins = true;
   }
 }
 
@@ -92,58 +100,65 @@ KEY D = 68, (right)
 */
 function moveP1(p1){
   if (p1.keyCode === 68){
-    if (p1positionX + dx < WIDTH){
+    if (p1positionX + distanceX < MAZEWIDTH){
       console.log('moving p1 right');
-      p1positionX += dx;
+      p1positionX += distanceX;
       clear();
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
-        p1positionX -= dx;
+        p1positionX -= distanceX;
         wallBlocking = false;
+      }
+      checkForWinP1();
+      if (p1wins){
+        alert('Player 1 Wins!');
       }
     }
   }
   if (p1.keyCode === 65){
-    if (p1positionX + dx > 0){
+    if (p1positionX + distanceX > 0){
       console.log('moving p1 left');
-      p1positionX -= dy;
+      p1positionX -= distanceY;
       clear();
+      checkForWinP1();
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
-        p1positionX += dx;
+        p1positionX += distanceX;
         wallBlocking = false;
       }
     }
   }
   if (p1.keyCode === 87){
-    if (p1positionY + dy > 0){
+    if (p1positionY + distanceY > 0){
       console.log('moving p1 up');
-      p1positionY -= dy;
+      p1positionY -= distanceY;
       clear();
+      checkForWinP1();
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
-        p1positionY += dy;
+        p1positionY += distanceY;
         wallBlocking = false;
       }
     }
   }
   if (p1.keyCode === 83){
-    if (p1positionY + dy < HEIGHT){
+    if (p1positionY + distanceY < MAZEHEIGHT){
       console.log('moving p1 down');
-      p1positionY += dy;
+      p1positionY += distanceY;
       clear();
+      checkForWinP1();
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
-        p1positionY -= dy;
+        p1positionY -= distanceY;
         wallBlocking = false;
       }
     }
   }
-  console.log(context.getImageData(p1positionX,p1positionY,1,1).data);
+  console.log(context.getImageData(p1positionX, p1positionY, markerWidth, markerHeight).data);
 }
 
 
@@ -156,61 +171,61 @@ ARROW RIGHT = 39,
 */
 function moveP2(p2){
   if (p2.keyCode === 39){
-    if (p2positionX + dx < WIDTH){
+    if (p2positionX + distanceX < MAZEWIDTH){
       console.log('moving p2 right');
-      p2positionX += dx;
+      p2positionX += distanceX;
       clear();
       checkForWallP2();
       if (wallBlocking){
         console.log('wall block');
-        p2positionX -= dx;
+        p2positionX -= distanceX;
         wallBlocking = false;
       }
     }
   }
   if (p2.keyCode === 37){
-    if (p2positionX + dx > 0){
+    if (p2positionX + distanceX > 0){
       console.log('moving p2 left');
-      p2positionX -= dx;
+      p2positionX -= distanceX;
       clear();
       checkForWallP2();
       if (wallBlocking){
         console.log('wall block');
-        p2positionX += dx;
+        p2positionX += distanceX;
         wallBlocking = false;
       }
     }
   }
   if (p2.keyCode === 38){
-    if (p2positionY + dy > 0){
+    if (p2positionY + distanceY > 0){
       console.log('moving p2 up');
-      p2positionY -= dy;
+      p2positionY -= distanceY;
       clear();
       checkForWallP2();
       if (wallBlocking){
         console.log('wall block');
-        p2positionY += dy;
+        p2positionY += distanceY;
         wallBlocking = false;
       }
     }
   }
   if (p2.keyCode === 40){
-    if (p2positionY + dy < HEIGHT){
+    if (p2positionY + distanceY < MAZEHEIGHT){
       console.log('moving p2 down');
-      p2positionY += dy;
+      p2positionY += distanceY;
       clear();
       checkForWallP2();
       if (wallBlocking){
         console.log('wall block');
-        p2positionY -= dy;
+        p2positionY -= distanceY;
         wallBlocking = false;
       }
     }
   }
-  console.log(context.getImageData(p1positionX,p1positionY,1,1).data);
+  console.log(context.getImageData(p2positionX, p2positionY, markerWidth, markerHeight).data);
 }
 
-init();
+startGame();
 
 window.addEventListener('keydown', moveP1, true); //listens for p1 keydown
 window.addEventListener('keydown', moveP2, true); //listens for p2 keydown
