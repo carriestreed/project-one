@@ -1,4 +1,4 @@
-console.log('app-TEST.js loaded');
+console.log('app-canvas.js loaded');
 
 ///////////// ATTEMPTING USE OF CANVAS API /////////////////
 /*
@@ -86,8 +86,8 @@ function checkForWallP2(){   //checks for clear path for Player 1
 
 function checkForWin(){
   console.log('checking for win');
-  if (p1positionX === 580 && p1positionY === 277 ||
-      p2positionX === 3 && p2positionY === 307){ //p1 exit coordinates
+  if (p1positionX === 580 && p1positionY === 277 || //p1 exit coordinates
+      p2positionX === 3 && p2positionY === 307){    //p2 exit coordinates
     playerWins = true;
   }
 }
@@ -227,7 +227,7 @@ function moveP2(p2){
   console.log(context.getImageData(p2positionX, p2positionY, markerWidth, markerHeight).data);
 }
 
-startGame();
+// startGame();
 
 window.addEventListener('keydown', moveP1, true); //listens for p1 keydown
 window.addEventListener('keydown', moveP2, true); //listens for p2 keydown
