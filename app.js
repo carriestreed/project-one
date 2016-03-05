@@ -7,15 +7,17 @@ var mazeGame;
 var welcomeBox;
 var title;
 var clickToPlay;
+
 /////////////////////////
 
 /////player variables
-var p1win       = false;
-var p2win       = false;
-var p1nameInput = document.querySelector('#p1');
-var p2nameInput = document.querySelector('#p2');
 var p1name;
 var p2name;
+var p1win       = false;
+    p2win       = false;
+    p1nameInput = document.querySelector('#p1');
+    p2nameInput = document.querySelector('#p2');
+
 
 if (p1nameInput.addEventListener){
     p1nameInput.addEventListener('keyup', function() {
@@ -30,7 +32,7 @@ if (p2nameInput.addEventListener){
 }
 
 /////welcome box
-clickToPlay = document.querySelector('#playButton');
+clickToPlay = document.querySelector('.playButton');
 clickToPlay.addEventListener('click', playMaze);
 
 function playMaze(){
@@ -53,15 +55,24 @@ function winAlert(){
   console.log('in the WinAlert function')
   if (p1win){
     console.log(p1name + ' is the winner');
-
-    var winBox = document.querySelector
-
-
+    var winBox = document.querySelector('.winner');
+      winBox.style.visibility = 'visible';
+    var winnerName = document.querySelector('.winName');
+      winnerName.innerHTML = p1name;
+      winnerName.style.color = 'mediumVioletRed';
+    var loserName = document.querySelector('.loseName');
+      loserName.innerHTML = p2name;
+      loserName.style.color = 'yellowGreen';
   }
   if (p2win){
     console.log(p2name + ' is the winner');
-
-
-
+    var winBox = document.querySelector('.winner');
+      winBox.style.visibility = 'visible';
+    var winnerName = document.querySelector('.winName');
+      winnerName.innerHTML = p2name;
+      winnerName.style.color = 'yellowGreen';
+    var loserName = document.querySelector('.loseName');
+      loserName.innerHTML = p1name;
+      loserName.style.color = 'mediumVioletRed';
   }
 }

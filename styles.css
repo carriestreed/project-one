@@ -44,13 +44,23 @@ h2 {
 
 h3 {
   font-size: 50px;
-  text-align:center;
-  margin-top: 100px;
-  color: LightSeaGreen;
+  text-align: center;
+  margin-top: 45px;
+  color: orangeRed;
+  animation-name: h3anim;
+  animation-duration: 1s;
+  animation-direction: reverse;
+  animation-iteration-count: infinite;
+}
+@keyframes h3anim {
+  33%  {color: mediumVioletRed;}
+  66%  {color: yellowGreen;}
+  99%  {color: deepPink;}
 }
 
 .winner > p {
   font-size: 40px;
+  text-align: justify;
 }
 
 form {
@@ -68,11 +78,11 @@ input[type=text] {
 }
 
 input[name=player1] {
-  background-color: MediumVioletRed;
+  background-color: mediumVioletRed;
 }
 
 input[name=player2] {
-  background-color: YellowGreen;
+  background-color: yellowGreen;
 }
 
 input[type=button] {
@@ -81,6 +91,9 @@ input[type=button] {
   border: 1px solid #999;
   width: 100%;
   height: 100px
+}
+input[type=button]:hover {
+  background-color: lightGrey;
 }
 
 .welcome {
@@ -94,7 +107,8 @@ input[type=button] {
   padding: 0 30px;
 }
 
-/*.winner {
+.winner {
+  visibility: hidden;
   width: 600px;
   height: 600px;
   background-color: rgba(255,255,255,0.95);
@@ -103,7 +117,7 @@ input[type=button] {
   top: 0px;
   left: 0px;
   padding: 0 30px;
-}*/
+}
 
 
 /*

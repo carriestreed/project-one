@@ -16,6 +16,7 @@
 
     <div class="maze-game">
 
+      <!-- all the goodness -->
       <canvas id="canvas" width="600" height="600">
       </canvas>
 
@@ -23,14 +24,14 @@
       <div class="welcome">
         <h2> The Maze Race</h2>
         <p> Players! Choose your mark: </p>
-
         <form>
           <input id="p1" type="text" name="player1" placeholder="Player One, Sign Up Here" value="">
           <br><br>
           <input id="p2" type="text" name="player2" placeholder="Player Two, Sign Up Here" value="">
           <br><br>
-          <input id="playButton" type="button" value="Ready? Set... Go!">
+          <input class="playButton" type="button" value="Ready? Set... Go!">
         </form>
+      </div>
 
       <!-- winner box -->
       <div class="winner">
@@ -38,13 +39,16 @@
         <p> Congrats
             <span class="winName"> 'winner name' </span>!
             You are officially smarter, faster,
-            and much more goodlooking than
+            and much more good-looking than
             <span class="loseName"> 'loser name' </span>.
         </p>
+        <br>
+        <form>
+          <input class="playButton" type="button" value="Race Again?">
       </div>
 
-    </div>
 
+    </div>
   </div>
 
 <script src="app.js"></script>

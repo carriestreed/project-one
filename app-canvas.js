@@ -78,7 +78,7 @@ function clear(){                                   //resets canvas for animatio
   context.drawImage(mazeImg, 0, 0);                 //draws canvas image
 }
 
-/////checks for boundaries TODO write one function and pass in a parameter
+/////checks for boundaries
 function checkForWallP1(){
   //getImageData() returns marker's current position on the canvas using its pixel data
   var mazeImageData   = context.getImageData(p1positionX, p1positionY, markerWidth, markerHeight);
@@ -103,19 +103,20 @@ function checkForWallP2(){
     }
   }
 }
+//TODO write one function and pass in a parameter for each player
 /////////////////////////
 
 
 function checkForWin(){                             //checks for winner, 1st to exit wins!
   console.log('checking for win');
   if (p1positionX === 580 && p1positionY === 277){  //p1 exit coordinates
-    console.log(p1name + 'wins!');
+    console.log(p1name + ' wins!');
     p1win = true;
     winAlert();
     return;
   }
   if (p2positionX === 3 && p2positionY === 306){    //p2 exit coordinates
-    console.log(p2name + 'wins!');
+    console.log(p2name + ' wins!');
     p2win = true;
     winAlert();
     return;
