@@ -130,7 +130,7 @@ function moveP1(p1){
     if (p1positionX + distanceX > 0){
       console.log('moving p1 left');
       clear();
-      p1positionX -= distanceY;
+      p1positionX -= distanceX; //TODO check if working. changed Y to X in distance
       checkForWallP1();
       if (wallBlocking){
         console.log('wall block');
