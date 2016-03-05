@@ -11,26 +11,6 @@ Maze image generated at
 http://www.mazegenerator.net/
 */
 
-// var players = [
-//   {
-//     positionX: 10,
-//     positionY: 100
-//     up: 86,
-//     left: 87,
-//     down: 88,
-//     right: 89
-//   },
-//   {
-//     positionX: 0,
-//     positionY: 10000,
-//     up:
-//     down:
-//     left:
-//     right:
-//   }
-// ]
-
-
 /////global variables/////
 var canvas;                      //container to 'draw' graphics for maze/markers
 var context;                     //assigns context (will be '2D')

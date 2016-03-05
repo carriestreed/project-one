@@ -27,7 +27,7 @@ h1 {
 }
 
 .maze-game {
-  background: url('img/maze.gif');
+  /*background: url('img/maze.gif');*/
   background-size: contain;
   width: 600px;
   height: 600px;
