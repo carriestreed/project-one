@@ -80,9 +80,8 @@ function winAlert(){
 var raceAgain = document.querySelector('.resetButton');
 raceAgain.addEventListener('click', function(){
   console.log('clicked to reload');
-  document.location.reload(true); 
+  document.location.reload(true);
 });
-
 
 
 //TODO

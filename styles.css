@@ -107,6 +107,10 @@ input[type=button]:hover {
   margin-right: 15px;
 }
 
+form > .resetButton {
+  width: 100%;
+}
+
 .welcome {
   width: 600px;
   height: 600px;
