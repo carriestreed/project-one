@@ -87,7 +87,7 @@ function draw(){
       positionY = players[i].positionY;
       markerWidth = players[i].width;
       markerHeight = players[i].height;
-      player1marker(positionX, positionY, markerWidth, markerHeight);
+      createMarkers(positionX, positionY, markerWidth, markerHeight);
     }
     if (players[i].name === 'player2'){
       context.fillStyle = players[i].markerColor;
@@ -95,23 +95,17 @@ function draw(){
       positionY = players[i].positionY;
       markerWidth = players[i].width;
       markerHeight = players[i].height;
-      player2marker(positionX, positionY, markerWidth, markerHeight);
+      createMarkers(positionX, positionY, markerWidth, markerHeight);
     }
   }
 }
 
-
-function player1marker(pX,pY,mW,mH){                      //creates player1 marker -- pulls from draw()
+function createMarkers(pX, pY, mW, mH){
   context.beginPath();                              //starts rectangle drawing for player1
   context.rect(pX, pY, mW, mH);                     //canvas api function for Rectangle shape
   context.fill();                                   //points to context.fillStyle in draw()
 }
 
-function player2marker(pX,pY,mW, mH){                     //creates player2 marker -- pulls from draw()
-  context.beginPath();                              //starts rectangle drawing for player2
-  context.rect(pX, pY, mW, mH);                     //canvas api function for Rectangle shape
-  context.fill();                                   //points to context.fillStyle in draw()
-}
 
 function clear(){                                   //resets canvas for animation/'drawing'
   context.clearRect(0, 0, MAZEWIDTH, MAZEHEIGHT);   //resets marker positions--allows for movement
