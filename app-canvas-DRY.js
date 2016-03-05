@@ -26,6 +26,8 @@ var players = [
     positionX: 1,         //p1 horizontal position
     positionY: 307,       //p1 vertical position
     markerColor: 'mediumVioletRed',
+    distanceX: 10,        //horizontal distance by pixel
+    distanceY: 10,        //vertical distance by pixel
     width: 17,            //sets width of player marker
     height: 17,           //sets height of player marker
     right: 68,            //key D
@@ -38,6 +40,8 @@ var players = [
     positionX: 583,       //p2 horizontal position
     positionY: 276,       //p2 vertical position
     markerColor: 'yellowGreen',
+    distanceX: 10,        //horizontal distance by pixel
+    distanceY: 10,        //vertical distance by pixel
     width: 17,            //sets width of player marker
     height: 17,           //sets height of player marker
     right: 39,            //arrow right
@@ -47,12 +51,12 @@ var players = [
   }
 ]
 
-var markers = [
-  {
-    distanceX: 10,        //horizontal distance by pixel
-    distanceY: 10,        //vertical distance by pixel
-  }
-]
+// var markers = [
+//   {
+//     distanceX: 10,        //horizontal distance by pixel
+//     distanceY: 10,        //vertical distance by pixel
+//   }
+// ]
 
 function startGame(){                               //starts the game, sets everything in place
   canvas      = document.querySelector('#canvas');  //selects canvas
@@ -141,19 +145,19 @@ function movePlayers(mark){
     if (mark.keyCode === players[i].right){
       clear();
       console.log('moving ' + players[i].name + ' right');
-      players[i].positionX += markers[i].distanceX;
+      players[i].positionX += players[i].distanceX;
     }
     if (mark.keyCode === players[i].left){
       console.log('moving ' + players[i].name + ' left');
-      players[i].positionX -= markers[i].distanceX;
+      players[i].positionX -= players[i].distanceX;
     }
     if (mark.keyCode === players[i].up){
       console.log('moving ' + players[i].name + ' up');
-      players[i].positionY -= markers[i].distanceY;
+      players[i].positionY -= players[i].distanceY;
     }
     if (mark.keyCode === players[i].down){
       console.log('moving ' + players[i].name + ' down');
-      players[i].positionY += markers[i].distanceY;
+      players[i].positionY += players[i].distanceY;
     }
   }
 }
