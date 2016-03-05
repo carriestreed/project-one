@@ -144,14 +144,17 @@ function movePlayers(mark){
       players[i].positionX += players[i].distanceX;
     }
     if (mark.keyCode === players[i].left){
+            clear();
       console.log('moving ' + players[i].name + ' left');
       players[i].positionX -= players[i].distanceX;
     }
     if (mark.keyCode === players[i].up){
+            clear();
       console.log('moving ' + players[i].name + ' up');
       players[i].positionY -= players[i].distanceY;
     }
     if (mark.keyCode === players[i].down){
+            clear();
       console.log('moving ' + players[i].name + ' down');
       players[i].positionY += players[i].distanceY;
     }
