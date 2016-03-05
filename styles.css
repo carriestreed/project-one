@@ -45,7 +45,7 @@ h2 {
 h3 {
   font-size: 50px;
   text-align: center;
-  margin-top: 45px;
+  margin-top: 60px;
   color: orangeRed;
   animation-name: h3anim;
   animation-duration: 1s;
@@ -71,6 +71,7 @@ form {
 input[type=text] {
   padding: 20px;
   font-size: 20px;
+  text-transform: capitalize;
   color: white;
   border: 1px solid darkGrey;
   width: 100%;
@@ -88,12 +89,22 @@ input[name=player2] {
 input[type=button] {
   font-size: 20px;
   font-weight: bolder;
-  border: 1px solid #999;
-  width: 100%;
+  background-color: lightGrey;
+  border: 1px solid darkGrey;
+  display: inline-block;
   height: 100px
 }
 input[type=button]:hover {
-  background-color: lightGrey;
+  background-color: Gainsboro;
+}
+
+.playButton {
+  width: 76%;
+}
+
+.rulesButton {
+  width: 20%;
+  margin-right: 15px;
 }
 
 .welcome {

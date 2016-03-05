@@ -20,15 +20,15 @@ var p1win       = false;
 
 
 if (p1nameInput.addEventListener){
-    p1nameInput.addEventListener('keyup', function() {
-      p1name = p1nameInput.value;
-    });
+  p1nameInput.addEventListener('keyup', function() {
+    p1name = p1nameInput.value;
+  });
 }
 
 if (p2nameInput.addEventListener){
   p2nameInput.addEventListener('keyup', function() {
     p2name = p2nameInput.value;
-  })
+  });
 }
 
 /////welcome box
@@ -50,7 +50,6 @@ function playMaze(){
 
 
 /////win alert box
-
 function winAlert(){
   console.log('in the WinAlert function')
   if (p1win){
@@ -74,5 +73,17 @@ function winAlert(){
     var loserName = document.querySelector('.loseName');
       loserName.innerHTML = p1name;
       loserName.style.color = 'mediumVioletRed';
-  }
+   }
 }
+
+/////race again button
+var raceAgain = document.querySelector('.resetButton');
+raceAgain.addEventListener('click', function(){
+  console.log('clicked to reload');
+  document.location.reload(true); 
+});
+
+
+
+//TODO
+//game instructions

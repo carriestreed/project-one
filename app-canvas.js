@@ -2,14 +2,15 @@ console.log('app-canvas.js loaded');
 
 ///////////// ATTEMPTING USE OF CANVAS API /////////////////
 /*
-
 Canvas Tutorials:
 https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 http://www.html5canvastutorials.com/
 http://html5.litten.com/make-a-maze-game-on-an-html5-canvas/
 
+Maze image generated at
+http://www.mazegenerator.net/
 */
-//
+
 // var players = [
 //   {
 //     positionX: 10,
