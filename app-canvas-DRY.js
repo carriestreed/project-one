@@ -141,22 +141,19 @@ function movePlayers(mark){
     if (mark.keyCode === players[i].right){
       clear();
       console.log('moving ' + players[i].name + ' right');
-      players[i].positionX += players[i].distanceX;
+      players[i].positionX += markers[i].distanceX;
     }
     if (mark.keyCode === players[i].left){
-            clear();
       console.log('moving ' + players[i].name + ' left');
-      players[i].positionX -= players[i].distanceX;
+      players[i].positionX -= markers[i].distanceX;
     }
     if (mark.keyCode === players[i].up){
-            clear();
       console.log('moving ' + players[i].name + ' up');
-      players[i].positionY -= players[i].distanceY;
+      players[i].positionY -= markers[i].distanceY;
     }
     if (mark.keyCode === players[i].down){
-            clear();
       console.log('moving ' + players[i].name + ' down');
-      players[i].positionY += players[i].distanceY;
+      players[i].positionY += markers[i].distanceY;
     }
   }
 }
