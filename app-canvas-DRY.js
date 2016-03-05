@@ -16,10 +16,10 @@ var canvas;                      //container to 'draw' graphics for maze/markers
 var context;                     //assigns context (will be '2D')
 var distanceX = 10;              //horizontal distance by pixel
     distanceY = 10;              //vertical distance by pixel
-    p1positionX  = 1;            //p1 horizontal position
-    p1positionY  = 307;          //p1 vertical position
-    p2positionX  = 583;          //p2 horizontal position
-    p2positionY  = 276;          //p2 vertical position
+    // p1positionX  = 1;            //p1 horizontal position
+    // p1positionY  = 307;          //p1 vertical position
+    // p2positionX  = 583;          //p2 horizontal position
+    // p2positionY  = 276;          //p2 vertical position
     // mazeImg      = new Image();  //reads from canvas API - creates new image function for maze.gif
     markerWidth  = 17;           //sets width of player markers
     markerHeight = 17;           //sets height of player markers
@@ -29,7 +29,7 @@ var distanceX = 10;              //horizontal distance by pixel
 
 var players = [
   {
-    // name: player1,
+    name: 'player1',
     positionX: 1,         //p1 horizontal position
     positionY: 307,       //p1 vertical position
     markerColor: 'mediumVioletRed',
@@ -41,7 +41,7 @@ var players = [
     down: 83              //key S
   },
   {
-    // name: player2,
+    name: 'player2',
     positionX: 583,     //p2 horizontal position
     positionY: 276,     //p2 vertical position
     markerColor: 'yellowGreen',
@@ -50,14 +50,12 @@ var players = [
     right: 39,             //arrow right
     left: 37,             //arrow left
     up: 38,               //arrow up
-    down: 40,             //arrow down
+    down: 40             //arrow down
   }
 ]
 
 var markers = [
   {
-    width: 17,            //sets width of player markers
-    height: 17,           //sets height of player markers
     distanceX: 10,        //horizontal distance by pixel
     distanceY: 10,        //vertical distance by pixel
   }
@@ -79,34 +77,37 @@ function startGame(){                               //starts the game, sets ever
 //   player2(p2positionX, p2positionY, markerWidth, markerHeight);  //passed in to player2()
 // }
 
+
 function draw(){
+  clear();
   for (var i = 0; i < players.length; i++){
-    clear()
-    context.fillStyle = players[i].markerColor;
-    positionX         = players[i].positionX;
-    positionY         = players[i].positionY;
-    markerWidth       = players[i].width;
-    markerHeight      = players[i].height;
-    player1(positionX, positionY, markerWidth, markerHeight);
-    player2(positionX, positionY, markerWidth, markerHeight);
+    if (players[i].name === 'player1'){
+      context.fillStyle = players[i].markerColor;
+      positionX = players[i].positionX;
+      positionY = players[i].positionY;
+      markerWidth = players[i].width;
+      markerHeight = players[i].height;
+      player1marker(positionX, positionY, markerWidth, markerHeight);
+    }
+    if (players[i].name === 'player2'){
+      context.fillStyle = players[i].markerColor;
+      positionX = players[i].positionX;
+      positionY = players[i].positionY;
+      markerWidth = players[i].width;
+      markerHeight = players[i].height;
+      player2marker(positionX, positionY, markerWidth, markerHeight);
+    }
   }
 }
 
 
-// function createPlayers(pX,pY,mW,mH){
-//   context.beginPath();
-//   context.rect(pX, pY, mW, mH);
-//   context.fill();
-// }
-
-
-function player1(pX,pY,mW,mH){                      //creates player1 marker -- pulls from draw()
+function player1marker(pX,pY,mW,mH){                      //creates player1 marker -- pulls from draw()
   context.beginPath();                              //starts rectangle drawing for player1
   context.rect(pX, pY, mW, mH);                     //canvas api function for Rectangle shape
   context.fill();                                   //points to context.fillStyle in draw()
 }
 
-function player2(pX,pY,mW, mH){                     //creates player2 marker -- pulls from draw()
+function player2marker(pX,pY,mW, mH){                     //creates player2 marker -- pulls from draw()
   context.beginPath();                              //starts rectangle drawing for player2
   context.rect(pX, pY, mW, mH);                     //canvas api function for Rectangle shape
   context.fill();                                   //points to context.fillStyle in draw()
