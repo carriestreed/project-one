@@ -56,13 +56,6 @@ var players = [
   }
 ]
 
-
-var maze = [
-  {
-
-  }
-]
-
 function startGame(){                               //starts the game, sets everything in place
   canvas      = document.querySelector('#canvas');  //selects canvas
   context     = canvas.getContext('2d');            //canvas api to assign Context (which is 2D)
@@ -126,42 +119,42 @@ function movePlayers(mark){
     if (mark.keyCode === players[i].right){
       console.log('moving ' + players[i].name + ' right');
       players[i].positionX += players[i].distanceX;
-      checkForWall();
-      if (wallBlocking){           ////TODO, create moveBack()
-        console.log('wall block');
-        players[i].positionX -= players[i].distanceX;
-        wallBlocking = false;
-      }
+      // checkForWall();
+      // if (wallBlocking){           ////TODO, create moveBack()
+      //   console.log('wall block');
+      //   players[i].positionX -= players[i].distanceX;
+      //   wallBlocking = false;
+      // }
     }
     if (mark.keyCode === players[i].left){
       console.log('moving ' + players[i].name + ' left');
       players[i].positionX -= players[i].distanceX;
-      checkForWall();
-      if (wallBlocking){
-        console.log('wall block');
-        players[i].positionX += players[i].distanceX;
-        wallBlocking = false;
-      }
+      // checkForWall();
+      // if (wallBlocking){
+      //   console.log('wall block');
+      //   players[i].positionX += players[i].distanceX;
+      //   wallBlocking = false;
+      // }
     }
     if (mark.keyCode === players[i].up){
       console.log('moving ' + players[i].name + ' up');
       players[i].positionY -= players[i].distanceY;
-      checkForWall();
-      if (wallBlocking){
-        console.log('wall block');
-        players[i].positionY += players[i].distanceY;
-        wallBlocking = false;
-      }
+      // checkForWall();
+      // if (wallBlocking){
+      //   console.log('wall block');
+      //   players[i].positionY += players[i].distanceY;
+      //   wallBlocking = false;
+      // }
     }
     if (mark.keyCode === players[i].down){
       console.log('moving ' + players[i].name + ' down');
       players[i].positionY += players[i].distanceY;
-      checkForWall();
-      if (wallBlocking){
-        console.log('wall block');
-        players[i].positionY -= players[i].distanceY;
-        wallBlocking = false;
-      }
+      // checkForWall();
+      // if (wallBlocking){
+      //   console.log('wall block');
+      //   players[i].positionY -= players[i].distanceY;
+      //   wallBlocking = false;
+      // }
     }
     checkForWin();
   }
