@@ -15,7 +15,6 @@ http://www.mazegenerator.net/
 var canvas;               //container to 'draw' graphics for maze/markers
 var context;              //assigns context (will be '2D')
 var mazeImg;
-var wallBlocking;
 var MAZEWIDTH  = 600;     //fixed canvas size for maze
 var MAZEHEIGHT = 600;     //fixed canvas size for maze
 //////////////////////////
@@ -66,7 +65,6 @@ var players = [
 ]
 
 
-
 function startGame(){                               //starts the game, sets everything in place
   canvas      = document.querySelector('#canvas');  //selects canvas
   context     = canvas.getContext('2d');            //canvas api to assign Context (which is 2D)
@@ -98,19 +96,19 @@ function clear(){                                   //resets canvas for animatio
 
 function checkForWall(){
   console.log('checking for wall');
-  // for (var i = 0; i < players.length; i++){
-  //   var mazeImageData = context.getImageData(
-  //     players[i].positionX,
-  //     players[i].positionY,
-  //     players[i].markerWidth,
-  //     players[i].markerHeight);
-  // }
-  // var imgDataArr = mazeImageData.data;
-  // for (var j = 0; j < imgDataArr.length; j++){
-  //   if (imgDataArr[j] === 0){
-  //     wallBlocking = true;
-  //   }
-  // }
+  for (var i = 0; i < players.length; i++){
+    var mazeImageData = context.getImageData(
+      players[i].positionX,
+      players[i].positionY,
+      players[i].markerWidth,
+      players[i].markerHeight);
+    var imgDataArr = mazeImageData.data;
+    for (var j = 0; j < imgDataArr.length; j++){
+    if (imgDataArr[j] === 0){
+      wallBlocking = true;
+      }
+    }
+  }
 }
 
 function checkForWin(){                             //checks for winner, 1st to exit wins!
@@ -178,13 +176,14 @@ function movePlayers(mark){
     }
     checkForWin();
   }
-  for (var i = 0; i < players.length; i++){
-    console.log(context.getImageData(
-      players[i].positionX,
-      players[i].positionY,
-      players[i].markerWidth,
-      players[i].markerHeight).data);
-  }
+  // for (var i = 0; i < players.length; i++){
+  // console.log(context.getImageData(
+  //   players[i].positionX,
+  //   players[i].positionY,
+  //   players[i].markerWidth,
+  //   players[i].markerHeight).data);
+  // }
+
 }
 
 startGame();
