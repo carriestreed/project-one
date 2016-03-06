@@ -92,8 +92,6 @@ function clear(){                                   //resets canvas for animatio
   context.drawImage(mazeImg, 0, 0);                 //draws canvas image
 }
 
-//TODO write one function and pass in a parameter for each player
-
 function checkForWall(){
   console.log('checking for wall');
   for (var i = 0; i < players.length; i++){
@@ -113,22 +111,19 @@ function checkForWall(){
 
 function checkForWin(){                             //checks for winner, 1st to exit wins!
   console.log('checking for win');
+  if (players[0].positionX === 571 && players[0].positionY === 277){  //p1 exit coordinates
+    console.log(p1name + ' wins!');
+    p1win = true;
+    winAlert();
+    return;
+  }
+  if (players[1].positionX === 3 && players[1].positionY === 306){    //p2 exit coordinates
+    console.log(p2name + ' wins!');
+    p2win = true;
+    winAlert();
+    return;
+  }
 }
-
-// //TODO rework to point at object
-// function checkForWin(){                             //checks for winner, 1st to exit wins!
-//   if (p1positionX === 580 && p1positionY === 277){  //p1 exit coordinates
-//     p1win = true;
-//     winAlert();
-//     return;
-//   }
-//   if (p2positionX === 3 && p2positionY === 306){    //p2 exit coordinates
-//     p2win = true;
-//     winAlert();
-//     return;
-//   }
-// }
-
 
 function movePlayers(mark){
   console.log(mark.keyCode);
@@ -176,6 +171,7 @@ function movePlayers(mark){
     }
     checkForWin();
   }
+  // //console logging the image data map
   // for (var i = 0; i < players.length; i++){
   // console.log(context.getImageData(
   //   players[i].positionX,
@@ -183,12 +179,12 @@ function movePlayers(mark){
   //   players[i].markerWidth,
   //   players[i].markerHeight).data);
   // }
-
 }
 
 startGame();
 
 document.addEventListener('keydown', movePlayers);     //listens for players' keydown
+
 
 
 /* TODO
