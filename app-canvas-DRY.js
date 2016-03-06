@@ -7,7 +7,7 @@ https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 http://www.html5canvastutorials.com/
 http://html5.litten.com/make-a-maze-game-on-an-html5-canvas/
 
-Maze image generated at
+Maze Image generated at
 http://www.mazegenerator.net/
 */
 
@@ -15,6 +15,7 @@ http://www.mazegenerator.net/
 var canvas;               //container to 'draw' graphics for maze/markers
 var context;              //assigns context (will be '2D')
 var mazeImg;
+var wallBlocking;
 var MAZEWIDTH  = 600;     //fixed canvas size for maze
 var MAZEHEIGHT = 600;     //fixed canvas size for maze
 //////////////////////////
@@ -34,15 +35,12 @@ var players = [
     markerWidth  : 17,   //p1 marker width
     markerHeight : 17,   //p1 marker height
     markerSpecs: function(){
-      // positionX    = 1;    //p1 horizontal position
-      // positionY    = 307;  //p1 vertical position
-      // markerWidth  = 17;   //p1 marker width
-      // markerHeight = 17;   //p1 marker height
-      createMarkers(players[0].positionX,
+                    createMarkers(
+                    players[0].positionX,
                     players[0].positionY,
                     players[0].markerWidth,
-                    players[0].markerHeight);
-    }
+                    players[0].markerHeight)
+                    }
   },
   {
     name: 'player2',
@@ -57,16 +55,13 @@ var players = [
     positionY    : 276,
     markerWidth  : 17,
     markerHeight : 17,
-    markerSpecs: function(){
-      // positionX    = 583;
-      // positionY    = 276;
-      // markerWidth  = 17;
-      // markerHeight = 17;
-      createMarkers(players[1].positionX,
-                    players[1].positionY,
-                    players[1].markerWidth,
-                    players[1].markerHeight);
-    }
+    markerSpecs  : function(){
+                      createMarkers(
+                      players[1].positionX,
+                      players[1].positionY,
+                      players[1].markerWidth,
+                      players[1].markerHeight)
+                      }
   }
 ]
 
@@ -101,13 +96,22 @@ function clear(){                                   //resets canvas for animatio
 
 //TODO write one function and pass in a parameter for each player
 
-// function checkForWall(){
-//   console.log('checking for wall');
-//   for (var i = 0; i < players.length; i++){
-//
-//
-//   }
-// }
+function checkForWall(){
+  console.log('checking for wall');
+  // for (var i = 0; i < players.length; i++){
+  //   var mazeImageData = context.getImageData(
+  //     players[i].positionX,
+  //     players[i].positionY,
+  //     players[i].markerWidth,
+  //     players[i].markerHeight);
+  // }
+  // var imgDataArr = mazeImageData.data;
+  // for (var j = 0; j < imgDataArr.length; j++){
+  //   if (imgDataArr[j] === 0){
+  //     wallBlocking = true;
+  //   }
+  // }
+}
 
 function checkForWin(){                             //checks for winner, 1st to exit wins!
   console.log('checking for win');
@@ -135,44 +139,51 @@ function movePlayers(mark){
     if (mark.keyCode === players[i].right){
       console.log('moving ' + players[i].name + ' right');
       players[i].positionX += players[i].distanceX;
-      // checkForWall();
-      // if (wallBlocking){           ////TODO, create moveBack()
-      //   console.log('wall block');
-      //   players[i].positionX -= players[i].distanceX;
-      //   wallBlocking = false;
-      // }
+      checkForWall();
+      if (wallBlocking){           ////TODO, create moveBack()
+        console.log('wall block');
+        players[i].positionX -= players[i].distanceX;
+        wallBlocking = false;
+      }
     }
     if (mark.keyCode === players[i].left){
       console.log('moving ' + players[i].name + ' left');
       players[i].positionX -= players[i].distanceX;
-      // checkForWall();
-      // if (wallBlocking){
-      //   console.log('wall block');
-      //   players[i].positionX += players[i].distanceX;
-      //   wallBlocking = false;
-      // }
+      checkForWall();
+      if (wallBlocking){
+        console.log('wall block');
+        players[i].positionX += players[i].distanceX;
+        wallBlocking = false;
+      }
     }
     if (mark.keyCode === players[i].up){
       console.log('moving ' + players[i].name + ' up');
       players[i].positionY -= players[i].distanceY;
-      // checkForWall();
-      // if (wallBlocking){
-      //   console.log('wall block');
-      //   players[i].positionY += players[i].distanceY;
-      //   wallBlocking = false;
-      // }
+      checkForWall();
+      if (wallBlocking){
+        console.log('wall block');
+        players[i].positionY += players[i].distanceY;
+        wallBlocking = false;
+      }
     }
     if (mark.keyCode === players[i].down){
       console.log('moving ' + players[i].name + ' down');
       players[i].positionY += players[i].distanceY;
-      // checkForWall();
-      // if (wallBlocking){
-      //   console.log('wall block');
-      //   players[i].positionY -= players[i].distanceY;
-      //   wallBlocking = false;
-      // }
+      checkForWall();
+      if (wallBlocking){
+        console.log('wall block');
+        players[i].positionY -= players[i].distanceY;
+        wallBlocking = false;
+      }
     }
     checkForWin();
+  }
+  for (var i = 0; i < players.length; i++){
+    console.log(context.getImageData(
+      players[i].positionX,
+      players[i].positionY,
+      players[i].markerWidth,
+      players[i].markerHeight).data);
   }
 }
 
