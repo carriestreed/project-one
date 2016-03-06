@@ -115,7 +115,6 @@ function moveP1(p1){
   if (p1.keyCode === 68){                          //KEY D (RIGHT))
     if (p1positionX + distanceX < MAZEWIDTH){      //if distance travelled to the right doesn't exceed the  maze width
       console.log('moving p1 right');
-      clear();                                     //reset marker for 'redrawing' of position
       p1positionX += distanceX;                    //move Right per pixel assigned
       checkForWallP1();                            //check for boundaries
       if (wallBlocking){                           //if there is a wall
@@ -129,7 +128,6 @@ function moveP1(p1){
   if (p1.keyCode === 65){
     if (p1positionX + distanceX > 0){
       console.log('moving p1 left');
-      clear();
       p1positionX -= distanceX; //TODO check if working. changed Y to X in distance
       checkForWallP1();
       if (wallBlocking){
@@ -143,7 +141,6 @@ function moveP1(p1){
   if (p1.keyCode === 87){
     if (p1positionY + distanceY > 0){
       console.log('moving p1 up');
-      clear();
       p1positionY -= distanceY;
       checkForWallP1();
       if (wallBlocking){
@@ -157,7 +154,6 @@ function moveP1(p1){
   if (p1.keyCode === 83){
     if (p1positionY + distanceY < MAZEHEIGHT){
       console.log('moving p1 down');
-      clear();
       p1positionY += distanceY;
       checkForWallP1();
       if (wallBlocking){
@@ -182,7 +178,6 @@ function moveP2(p2){
   if (p2.keyCode === 39){                        //ARROW RIGHT
     if (p2positionX + distanceX < MAZEWIDTH){    //if distance travelled to the right doesn't exceed the  maze width
       console.log('moving p2 right');
-      clear();                                   //reset marker for 'redrawing' of position
       p2positionX += distanceX;                  //move Right per pixel assigned
       checkForWallP2();                          //check for boundaries
       if (wallBlocking){                         //if there is a wall
@@ -196,7 +191,6 @@ function moveP2(p2){
   if (p2.keyCode === 37){                        //ARROW LEFT
     if (p2positionX + distanceX > 0){            //if distance travelled to the left doesn't proceed the maze width
       console.log('moving p2 left');
-      clear();                                   //reset marker for 'redrawing' of position
       p2positionX -= distanceX;                  //move Left per pixel assigned
       checkForWallP2();                          //check for boundaries
       if (wallBlocking){                         //if there is a wall
@@ -210,7 +204,6 @@ function moveP2(p2){
   if (p2.keyCode === 38){
     if (p2positionY + distanceY > 0){
       console.log('moving p2 up');
-      clear();
       p2positionY -= distanceY;
       checkForWallP2();
       if (wallBlocking){
@@ -224,7 +217,6 @@ function moveP2(p2){
   if (p2.keyCode === 40){
     if (p2positionY + distanceY < MAZEHEIGHT){
       console.log('moving p2 down');
-      clear();
       p2positionY += distanceY;
       checkForWallP2();
       if (wallBlocking){

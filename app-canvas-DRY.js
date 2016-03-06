@@ -14,6 +14,7 @@ http://www.mazegenerator.net/
 /////global variables//////
 var canvas;               //container to 'draw' graphics for maze/markers
 var context;              //assigns context (will be '2D')
+var mazeImg;
 var MAZEWIDTH  = 600;     //fixed canvas size for maze
 var MAZEHEIGHT = 600;     //fixed canvas size for maze
 //////////////////////////
@@ -21,33 +22,40 @@ var MAZEHEIGHT = 600;     //fixed canvas size for maze
 var players = [
   {
     name: 'player1',
-    positionX: 1,         //p1 horizontal position
-    positionY: 307,       //p1 vertical position
+    distanceX: 10,         //horizontal distance by pixel
+    distanceY: 10,         //vertical distance by pixel
+    right: 68,             //key D
+    left: 65,              //key A
+    up: 87,                //key W
+    down: 83,              //key S
     markerColor: 'mediumVioletRed',
-    distanceX: 10,        //horizontal distance by pixel
-    distanceY: 10,        //vertical distance by pixel
-    width: 17,            //sets width of player marker
-    height: 17,           //sets height of player marker
-    right: 68,            //key D
-    left: 65,             //key A
-    up: 87,               //key W
-    down: 83              //key S
+    markerSpecs: function(){
+      positionX    = 1;    //p1 horizontal position
+      positionY    = 307;  //p1 vertical position
+      markerWidth  = 17;   //p1 marker width
+      markerHeight = 17;   //p1 marker height
+      createMarkers(positionX, positionY, markerWidth, markerHeight);
+    }
   },
   {
     name: 'player2',
-    positionX: 583,       //p2 horizontal position
-    positionY: 276,       //p2 vertical position
+    distanceX: 10,         //horizontal distance by pixel
+    distanceY: 10,         //vertical distance by pixel
+    right: 39,             //arrow right
+    left: 37,              //arrow left
+    up: 38,                //arrow up
+    down: 40,              //arrow down
     markerColor: 'yellowGreen',
-    distanceX: 10,        //horizontal distance by pixel
-    distanceY: 10,        //vertical distance by pixel
-    width: 17,            //sets width of player marker
-    height: 17,           //sets height of player marker
-    right: 39,            //arrow right
-    left: 37,             //arrow left
-    up: 38,               //arrow up
-    down: 40              //arrow down
+    markerSpecs: function(){
+      positionX    = 583;
+      positionY    = 276;
+      markerWidth  = 17;
+      markerHeight = 17;
+      createMarkers(positionX, positionY, markerWidth, markerHeight);
+    }
   }
 ]
+
 
 var maze = [
   {
@@ -67,11 +75,7 @@ function draw(){                                    //magggggiccccc
   clear();                                          //points to clear() which resets canvas for 'redrawing'
   for (var i = 0; i < players.length; i++){         //setting up players
       context.fillStyle = players[i].markerColor;
-      var positionX = players[i].positionX;
-      var positionY = players[i].positionY;
-      var markerWidth = players[i].width;
-      var markerHeight = players[i].height;
-      createMarkers(positionX, positionY, markerWidth, markerHeight);
+      players[i].markerSpecs();
   }
 }
 
@@ -86,60 +90,80 @@ function clear(){                                   //resets canvas for animatio
   context.drawImage(mazeImg, 0, 0);                 //draws canvas image
 }
 
-
 //TODO write one function and pass in a parameter for each player
 
-function checkForWall(){
-  console.log('checking for wall');
-  // for(var i = 0; i < players.length; i++){
-  //   var mazeImageData   = context.getImageData(x,y,w,h);
-  //   var imgDataArr      = mazeImageData.data;
-  //   for (var i = 0; i < imgDataArr.length; i++){
-  //     if (imgDataArr[i] === 0){
-  //       wallBlocking    = true;
-  //     }
-  //   }
-  // }
-}
+// function checkForWall(){
+//   console.log('checking for wall');
+//   for (var i = 0; i < players.length; i++){
+//
+//
+//   }
+// }
 
-
-//TODO rework to point at object
 function checkForWin(){                             //checks for winner, 1st to exit wins!
-  if (p1positionX === 580 && p1positionY === 277){  //p1 exit coordinates
-    p1win = true;
-    winAlert();
-    return;
-  }
-  if (p2positionX === 3 && p2positionY === 306){    //p2 exit coordinates
-    p2win = true;
-    winAlert();
-    return;
-  }
+  console.log('checking for win');
 }
+
+// //TODO rework to point at object
+// function checkForWin(){                             //checks for winner, 1st to exit wins!
+//   if (p1positionX === 580 && p1positionY === 277){  //p1 exit coordinates
+//     p1win = true;
+//     winAlert();
+//     return;
+//   }
+//   if (p2positionX === 3 && p2positionY === 306){    //p2 exit coordinates
+//     p2win = true;
+//     winAlert();
+//     return;
+//   }
+// }
 
 
 function movePlayers(mark){
   console.log(mark.keyCode);
   console.log('in movePlayers function');
   for (var i = 0; i < players.length; i++){
-    checkForWall();
     if (mark.keyCode === players[i].right){
-      clear();
       console.log('moving ' + players[i].name + ' right');
       players[i].positionX += players[i].distanceX;
+      checkForWall();
+      if (wallBlocking){           ////TODO, create moveBack()
+        console.log('wall block');
+        players[i].positionX -= players[i].distanceX;
+        wallBlocking = false;
+      }
     }
     if (mark.keyCode === players[i].left){
       console.log('moving ' + players[i].name + ' left');
       players[i].positionX -= players[i].distanceX;
+      checkForWall();
+      if (wallBlocking){
+        console.log('wall block');
+        players[i].positionX += players[i].distanceX;
+        wallBlocking = false;
+      }
     }
     if (mark.keyCode === players[i].up){
       console.log('moving ' + players[i].name + ' up');
       players[i].positionY -= players[i].distanceY;
+      checkForWall();
+      if (wallBlocking){
+        console.log('wall block');
+        players[i].positionY += players[i].distanceY;
+        wallBlocking = false;
+      }
     }
     if (mark.keyCode === players[i].down){
       console.log('moving ' + players[i].name + ' down');
       players[i].positionY += players[i].distanceY;
+      checkForWall();
+      if (wallBlocking){
+        console.log('wall block');
+        players[i].positionY -= players[i].distanceY;
+        wallBlocking = false;
+      }
     }
+    checkForWin();
   }
 }
 
