@@ -29,12 +29,19 @@ var players = [
     up: 87,                //key W
     down: 83,              //key S
     markerColor: 'mediumVioletRed',
+    positionX    : 1,    //p1 horizontal position
+    positionY    : 307,  //p1 vertical position
+    markerWidth  : 17,   //p1 marker width
+    markerHeight : 17,   //p1 marker height
     markerSpecs: function(){
-      positionX    = 1;    //p1 horizontal position
-      positionY    = 307;  //p1 vertical position
-      markerWidth  = 17;   //p1 marker width
-      markerHeight = 17;   //p1 marker height
-      createMarkers(positionX, positionY, markerWidth, markerHeight);
+      // positionX    = 1;    //p1 horizontal position
+      // positionY    = 307;  //p1 vertical position
+      // markerWidth  = 17;   //p1 marker width
+      // markerHeight = 17;   //p1 marker height
+      createMarkers(players[0].positionX,
+                    players[0].positionY,
+                    players[0].markerWidth,
+                    players[0].markerHeight);
     }
   },
   {
@@ -46,15 +53,24 @@ var players = [
     up: 38,                //arrow up
     down: 40,              //arrow down
     markerColor: 'yellowGreen',
+    positionX    : 583,
+    positionY    : 276,
+    markerWidth  : 17,
+    markerHeight : 17,
     markerSpecs: function(){
-      positionX    = 583;
-      positionY    = 276;
-      markerWidth  = 17;
-      markerHeight = 17;
-      createMarkers(positionX, positionY, markerWidth, markerHeight);
+      // positionX    = 583;
+      // positionY    = 276;
+      // markerWidth  = 17;
+      // markerHeight = 17;
+      createMarkers(players[1].positionX,
+                    players[1].positionY,
+                    players[1].markerWidth,
+                    players[1].markerHeight);
     }
   }
 ]
+
+
 
 function startGame(){                               //starts the game, sets everything in place
   canvas      = document.querySelector('#canvas');  //selects canvas
