@@ -18,7 +18,6 @@ var p1win       = false;
     p1nameInput = document.querySelector('#p1');
     p2nameInput = document.querySelector('#p2');
 
-
 if (p1nameInput.addEventListener){
   p1nameInput.addEventListener('keyup', function() {
     p1name = p1nameInput.value;
@@ -97,7 +96,3 @@ raceAgain.addEventListener('click', function(){
   console.log('clicked to reload');
   document.location.reload(true);
 });
-
-
-//TODO
-//game instructions
