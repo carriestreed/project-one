@@ -12,7 +12,9 @@ Game must be run on a server
 
 ###Unsolved Problems
 There are design aspects that I'd like to implement for better user experience:
-  * Adding finish lines to make it more obvious to the players where they should be exiting.
-  * Making the game dynamic
+  * Fix bug where players get stuck on the wall during the race
+  * Add finish lines to make it more obvious to the players where they should be exiting
+  * Make the game dynamic
+  * Create additional levels
 
 Also, although I was able to dry out app-canvas.js, I know I could condense it even more. Plus, the same still needs to be done with app.js.

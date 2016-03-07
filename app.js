@@ -8,17 +8,13 @@ var welcomeBox;
 var title;
 var clickToPlay;
 
-/////////////////////////
-
-/////player variables
+/////player setup
 var p1name;
 var p2name;
 var p1win       = false;
     p2win       = false;
     p1nameInput = document.querySelector('#p1');
     p2nameInput = document.querySelector('#p2');
-
-
 
   if (p1nameInput.addEventListener){
     p1nameInput.addEventListener('keyup', function() {

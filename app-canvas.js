@@ -10,6 +10,7 @@ http://html5.litten.com/make-a-maze-game-on-an-html5-canvas/
 Maze Image generated at
 http://www.mazegenerator.net/
 */
+
 var canvas;                      //container to 'draw' graphics for maze/markers
 var context;                     //assigns context (will be '2D')
 var mazeImg;
@@ -61,7 +62,7 @@ var players      = [
 ]
 
 
-function keyDownStart(){                            //workaround to fix bug when keying player name on welcome screen
+function keyDownStart(){                            //workaround to fix bug when keying player name on welcome screen --markers were being moved before the game even started
   document.addEventListener('keydown', movePlayers);
 }
 
@@ -190,5 +191,5 @@ technically broken----solution could be a while loop???
 
 Create moveBack function
 
-Fix bug where player2 gets stuck on a wall
+Fix bug where players gets stuck on a wall during race
 */
