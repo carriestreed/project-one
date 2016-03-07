@@ -27,7 +27,7 @@ var players      = [
     up           : 87,           //key W
     down         : 83,           //key S
     markerColor  : 'mediumVioletRed',
-    positionX    : 1,            //p1 horizontal position
+    positionX    : 0,            //p1 horizontal position
     positionY    : 307,          //p1 vertical position
     markerWidth  : 17,           //p1 marker width
     markerHeight : 17,           //p1 marker height
@@ -176,6 +176,7 @@ function movePlayers(mark){                           //player controls
   //   players[i].markerWidth,
   //   players[i].markerHeight).data);
   // }
+
 }
 
 // startGame();
