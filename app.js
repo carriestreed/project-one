@@ -36,7 +36,7 @@ clickToPlay = document.querySelector('.playButton');
 clickToPlay.addEventListener('click', playMaze);
 
 function playMaze(){
-  console.log('ready. set. go!')
+  console.log('ready. set. go!');
 
   title = document.querySelector('h1');
   title.style.color = 'black';
@@ -48,6 +48,21 @@ function playMaze(){
   startGame()
 }
 
+/////rules box
+clickForRules = document.querySelector('.rulesButton');
+clickForRules.addEventListener('click', openRules);
+
+function openRules(){
+  console.log('clicked for rules');
+  var rulesBox = document.querySelector('#rules');
+    rulesBox.style.visibility = 'visible';
+}
+
+var rulesExit = document.querySelector('.exitButton');
+rulesExit.addEventListener('click', function(){
+  console.log('clicked to reload');
+  document.location.reload(true);
+});
 
 /////win alert box
 function winAlert(){

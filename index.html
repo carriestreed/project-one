@@ -7,13 +7,13 @@
   <title>The Maze Race</title>
 </head>
 <body>
+
   <header>
     <h1> The Maze Race </h1>
   </header>
 
   <!--the game container -->
   <div class="maze-container">
-
     <div class="maze-game">
 
       <!-- all the goodness -->
@@ -49,18 +49,49 @@
         </form>
       </div>
 
+      <!-- rules box -->
+      <div id="rules">
+        <h3> Rules of the Race </h3>
+        <p> Your objective is to be the first to exit
+          the opposite side of the maze. Hit the
+          appropriate keys to move your marker, but
+          <em>do not hold the keys down continuously</em>.
+          That would be considered cheating, and
+          nobody likes cheaters. And also because I
+          haven't written the code to make that happen
+          for both players at the same time yet, so yea..
+          don't do it.
+          <br><br>
+
+          <strong>Player One Controls</strong>
+            <br>
+            D key moves right<br>
+            A key moves left<br>
+            W key moves up<br>
+            S key moves down<br>
+            <br><br>
+
+          <strong>Player Two Controls</strong>
+            <br>
+            Right Arrow moves right<br>
+            Left Arrow moves left<br>
+            Up Arrow moves up<br>
+            Down Arrow moves down<br>
+        </p>
+          <form>
+            <input class="exitButton" type="button" value="Now Off to the Race!">
+          </form>
+        </div>
+
       <!-- TODO player finish lines -->
-      <div class="finishLineP1">
+      <!-- <div class="finishLineP1">
       </div>
       <div class="finishLineP2">
-      </div>
+      </div> -->
 
+   </div>
+ </div>
 
-    </div>
-  </div>
-
-
-<!-- <script src="app-canvas.js"></script> -->
 <script src="app.js"></script>
 <script src="app-canvas-DRY.js"></script>
 </body>
