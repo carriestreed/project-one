@@ -10,8 +10,6 @@ http://html5.litten.com/make-a-maze-game-on-an-html5-canvas/
 Maze Image generated at
 http://www.mazegenerator.net/
 */
-
-
 var canvas;                      //container to 'draw' graphics for maze/markers
 var context;                     //assigns context (will be '2D')
 var mazeImg;
@@ -27,7 +25,7 @@ var players      = [
     up           : 87,           //key W
     down         : 83,           //key S
     markerColor  : 'mediumVioletRed',
-    positionX    : 0,            //p1 horizontal position
+    positionX    : 1,            //p1 horizontal position
     positionY    : 307,          //p1 vertical position
     markerWidth  : 17,           //p1 marker width
     markerHeight : 17,           //p1 marker height
@@ -63,7 +61,12 @@ var players      = [
 ]
 
 
+function keyDownStart(){                            //workaround to fix bug when keying player name on welcome screen
+  document.addEventListener('keydown', movePlayers);
+}
+
 function startGame(){                               //starts the game, sets everything in place
+  keyDownStart();                                   //calls function to recognize keydowns
   canvas      = document.querySelector('#canvas');  //selects canvas
   context     = canvas.getContext('2d');            //canvas api to assign Context (which is 2D)
   mazeImg     = new Image();                        //calls function from canvas API to create a new image
@@ -176,14 +179,7 @@ function movePlayers(mark){                           //player controls
   //   players[i].markerWidth,
   //   players[i].markerHeight).data);
   // }
-
 }
-
-// startGame();
-
-document.addEventListener('keydown', movePlayers);     //listens for players' keydown
-
-
 
 /* TODO
 Resize canvas maze image instead of just resizing the image diretly
@@ -193,4 +189,6 @@ movement. Unless both players are constantly keying down, the game is
 technically broken----solution could be a while loop???
 
 Create moveBack function
+
+Fix bug where player2 gets stuck on a wall
 */

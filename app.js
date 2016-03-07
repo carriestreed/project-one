@@ -18,17 +18,19 @@ var p1win       = false;
     p1nameInput = document.querySelector('#p1');
     p2nameInput = document.querySelector('#p2');
 
-if (p1nameInput.addEventListener){
-  p1nameInput.addEventListener('keyup', function() {
-    p1name = p1nameInput.value;
-  });
-}
 
-if (p2nameInput.addEventListener){
-  p2nameInput.addEventListener('keyup', function() {
-    p2name = p2nameInput.value;
-  });
-}
+
+  if (p1nameInput.addEventListener){
+    p1nameInput.addEventListener('keyup', function() {
+      p1name = p1nameInput.value;
+    });
+  }
+  if (p2nameInput.addEventListener){
+    p2nameInput.addEventListener('keyup', function() {
+      p2name = p2nameInput.value;
+    });
+  }
+
 
 /////welcome box
 clickToPlay = document.querySelector('.playButton');
