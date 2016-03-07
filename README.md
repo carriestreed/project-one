@@ -16,5 +16,6 @@ There are design aspects that I'd like to implement for better user experience:
   * Add finish lines to make it more obvious to the players where they should be exiting
   * Make the game dynamic
   * Create additional levels
+  * Require Sign-in
 
 Also, although I was able to dry out app-canvas.js, I know I could condense it even more. Plus, the same still needs to be done with app.js.
