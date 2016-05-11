@@ -172,14 +172,14 @@ function movePlayers(mark){                           //player controls
     }
     checkForWin();
   }
-  // //console logging the image data map
-  // for (var i = 0; i < players.length; i++){
-  // console.log(context.getImageData(
-  //   players[i].positionX,
-  //   players[i].positionY,
-  //   players[i].markerWidth,
-  //   players[i].markerHeight).data);
-  // }
+  //console logging the image data map
+  for (var i = 0; i < players.length; i++){
+  console.log(context.getImageData(
+    players[i].positionX,
+    players[i].positionY,
+    players[i].markerWidth,
+    players[i].markerHeight).data);
+  }
 }
 
 /* TODO
