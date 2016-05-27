@@ -1,5 +1,6 @@
 #THE MAZE RACE
 
+Click <a href="http://www.carriestreed.com/project-one/"> HERE </a> for a demo.
 
 ###Technologies Used
 JavaScript, HTML, HTML5 (canvas), CSS
